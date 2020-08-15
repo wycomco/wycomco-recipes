@@ -7,10 +7,7 @@
 	<key>Identifier</key>
 	<string>com.github.wycomco.bimcollab_zoom.download</string>
 	<key>Input</key>
-	<dict>
-		<key>NAME</key>
-		<string>BIMcollab ZOOM</string>
-	</dict>
+	<dict/>
 	<key>MiniumumVersion</key>
 	<string>0.2.9</string>
 	<key>Process</key>

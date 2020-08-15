@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Munki process and import recipe for Kubus' BIMcollab ZOOM.</string>
+	<key>Identifier</key>
+	<string>com.github.wycomco.bimcollab_zoom.munki</string>
+	<key>Input</key>
+	<dict>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string>apps/%NAME%</string>
+		<key>NAME</key>
+		<string>bimcollab_zoom</string>
+		<key>NICE_NAME</key>
+		<string>BIMcollab ZOOM</string>
+		<key>PKGPAYLOAD</key>
+		<string>pkgpayload</string>
+		<key>PKGROOT</key>
+		<string>pkgroot</string>
+		<key>RELATIVE_APP_PATH</key>
+		<string>/BIMcollab ZOOM/BIMcollab ZOOM.app</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>catalogs</key>
+			<array>
+				<string>testing</string>
+			</array>
+			<key>description</key>
+			<string>There's a better way to manage your BIM issues
+Save time and create better BIM models with professional issue management and integrated model validation</string>
+			<key>developer</key>
+			<string>Kubus</string>
+			<key>display_name</key>
+			<string>%NICE_NAME%</string>
+			<key>minimum_os_version</key>
+			<string>10.12</string>
+			<key>name</key>
+			<string>%NAME%</string>
+			<key>unattended_install</key>
+			<true/>
+			<key>uninstall_method</key>
+			<string>uninstall_script</string>
+			<key>uninstall_script</key>
+			<string>#!/bin/sh
+# find and delete any BIMcollab ZOOM Installation
+# preinstall script from the original package.
+rm -rf "/Applications/BIMcollab ZOOM/"
+</string>
+		</dict>
+	</dict>
+	<key>MiniumumVersion</key>
+	<string>0.3.1</string>
+	<key>ParentRecipe</key>
+	<string>com.github.wycomco.bimcollab_zoom.pkg</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>installs_item_paths</key>
+				<array>
+					<string>%RECIPE_CACHE_DIR%/%PKGPAYLOAD%/%RELATIVE_APP_PATH%</string>
+				</array>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiInstallsItemsCreator</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>path_list</key>
+				<array>
+					<string>%RECIPE_CACHE_DIR%/%PKGROOT%</string>
+					<string>%RECIPE_CACHE_DIR%/%PKGPAYLOAD%</string>
+				</array>
+			</dict>
+			<key>Processor</key>
+			<string>PathDeleter</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict/>
+			<key>Processor</key>
+			<string>MunkiPkginfoMerger</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>additional_pkginfo</key>
+				<dict>
+					<key>version</key>
+					<string>%version%</string>
+				</dict>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiPkginfoMerger</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
+				<key>repo_subdirectory</key>
+				<string>%MUNKI_REPO_SUBDIR%</string>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiImporter</string>
+		</dict>
+	</array>
+</dict>
+</plist>
