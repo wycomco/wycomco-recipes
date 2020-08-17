@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 #
 # Copyright 2019 Zack T (mlbz521)
+# Fixed and ammended by jutonium for wycomco, copyright Aug 2020
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -58,13 +59,13 @@ class ARCHICADUpdatesProcessor(URLGetter):
         available_builds = {}
 
         # Grab the available downloads.
-        response = self.download(
-            "https://graphisoft.com/ww/service/downloads/archicad-updates",
+        response = self.download("https://graphisoft.com/ww/service/downloads/archicad-updates",
             headers={"Accept": "application/json"},
         )
 
         json_data = json.loads(response)
         # Parse through the available downloads for versions that match the requested paramters.
+        # Adress potential python runtime errors by checking for the existence of "build".
         for json_object in json_data:
             if all(
                 (
