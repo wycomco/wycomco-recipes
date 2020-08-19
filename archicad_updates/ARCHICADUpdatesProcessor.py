@@ -67,8 +67,8 @@ class ARCHICADUpdatesProcessor(URLGetter):
             "https://graphisoft.com/ww/service/downloads/archicad-updates",
             headers={"Accept": "application/json"},
         )
-
         json_data = json.loads(response)
+
         # Parse through the available downloads for versions that match the requested paramters.
         # Adress potential python runtime errors by checking for the existence of "build". (jutonium)
         for json_object in json_data:
@@ -91,9 +91,10 @@ class ARCHICADUpdatesProcessor(URLGetter):
             build = sorted(available_builds.keys())[-1]
             version = "{}.0.0.{}".format(major_version, build)
             url = available_builds[build]
+            build = str(build)
         else:
-            build = 0
-            version = 0
+            build = "0"
+            version = "0"
             url = None
 
         if url:
