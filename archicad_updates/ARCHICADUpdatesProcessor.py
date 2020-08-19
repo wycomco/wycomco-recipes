@@ -42,9 +42,12 @@ class ARCHICADUpdatesProcessor(URLGetter):
             "description": "The release type to look for available patches.",
         },
     }
+    # Amended to output build number and version (jutonium)
     output_variables = {
         "url": {"description": "Returns the url to download."},
-        "version": {"description": "Returns the build number as the version."},
+        "build": {"build":  "Returns the build number."},
+        "version": {"description": "Returns the version computed from major_version "
+                    "and build number. Same as CFBundleVersion."},
     }
 
     description = __doc__
@@ -59,13 +62,15 @@ class ARCHICADUpdatesProcessor(URLGetter):
         available_builds = {}
 
         # Grab the available downloads.
-        response = self.download("https://graphisoft.com/ww/service/downloads/archicad-updates",
+        # Fixed URL (jutonium)
+        response = self.download(
+            "https://graphisoft.com/ww/service/downloads/archicad-updates",
             headers={"Accept": "application/json"},
         )
 
         json_data = json.loads(response)
         # Parse through the available downloads for versions that match the requested paramters.
-        # Adress potential python runtime errors by checking for the existence of "build".
+        # Adress potential python runtime errors by checking for the existence of "build". (jutonium)
         for json_object in json_data:
             if all(
                 (
@@ -75,14 +80,16 @@ class ARCHICADUpdatesProcessor(URLGetter):
                     json_object.get("build")
                 )
             ):
+                # Handling of new internal structure (jutonium)
                 mac_link = json_object.get("downloadLinks", dict()).get("mac", dict()).get("url")
                 if mac_link:
                     available_builds[json_object.get("build")] = mac_link
 
         # Get the latest version.
+        # Avoid unrelated errors and compute propper version (jutonium)
         if available_builds:
             build = sorted(available_builds.keys())[-1]
-            version = str(major_version) + ".0.0." + str(build)
+            version = "{}.0.0.{}".format(major_version, build)
             url = available_builds[build]
         else:
             build = 0
@@ -92,6 +99,9 @@ class ARCHICADUpdatesProcessor(URLGetter):
         if url:
             self.env["url"] = url
             self.output("Download URL: {}".format(self.env["url"]))
+            # Build and version instead of build as version (jutonium)
+            self.env["build"] = build
+            self.output("build: {}".format(self.env["build"]))
             self.env["version"] = version
             self.output("version: {}".format(self.env["version"]))
         else:
