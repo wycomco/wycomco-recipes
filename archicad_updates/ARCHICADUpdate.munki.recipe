@@ -3,7 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Downloads the latest update build of ARCHICAD based on the override-able parameters: MAJOR_VERSION, LOCALIZATION, and RELEASE_TYPE
+	<string>Imports the latest update build of ARCHICAD into munki which has been downloaded by its parent based on the override-able parameters: MAJOR_VERSION, LOCALIZATION, and RELEASE_TYPE
+The installation target can be changed by setting INSTALL_DIR to a different location. Useful e.g. if multiple language versions should be available on a Mac.
 
 MAJOR_VERSION options include:  20, 21, 22, 23, and 24
 LOCALIZATION options include:  INT (international english, part of many other licenses), AUS, AUT, BRA, CHE, CHI, CZE, FIN, FRA, GER, GRE, HUN, ITA, JPN, KOR, NED, NOR, NZE, POL, POR, RUS, SPA, SWE, TAI, TUR, UKI, UKR, and USA
@@ -46,7 +47,7 @@ RELEASE_TYPE options include:  AC (for full version), SOLO, and START</string>
 			<true/>
 		</dict>
 	</dict>
-	<key>MiniumumVersion</key>
+	<key>MinimumVersion</key>
 	<string>0.3.1</string>
 	<key>ParentRecipe</key>
 	<string>com.github.wycomco.download.ARCHICADUpdate</string>
