@@ -23,11 +23,11 @@
 			<key>category</key>
 			<string>Productivity</string>
 			<key>description</key>
-			<string>Telefonieren Sie nicht nur mit Telefon und Handy, sondern jetzt auch an jedem Computer – mit dem sipgate Softphone.</string>
+			<string>Place calls not only from your phone or mobile also now from any computer – with the sipgate Softphone.</string>
 			<key>developer</key>
 			<string>sipgate GmbH</string>
 			<key>display_name</key>
-			<string>sipgate softphone</string>
+			<string>sipgate Softphone</string>
 			<key>minimum_os_version</key>
 			<string>10.10</string>
 			<key>name</key>
