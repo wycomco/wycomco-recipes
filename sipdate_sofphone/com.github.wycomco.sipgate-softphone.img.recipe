@@ -5,18 +5,16 @@
 	<key>Description</key>
 	<string>Check dmg and app integrity after download recipe for the latest version of sipgate softphone.</string>
 	<key>Identifier</key>
-	<string>com.github.wycomco.sipgate-softphone.img</string>
+	<string>com.github.wycomco.dmg.sipgate-softphone</string>
 	<key>Input</key>
 	<dict>
-		<key>APPLICATIONS_PATH</key>
-		<string>/Applications</string>
 		<key>NAME</key>
 		<string>sipgate-softphone</string>
 	</dict>
 	<key>MiniumumVersion</key>
 	<string>0.3.1</string>
 	<key>ParentRecipe</key>
-	<string>com.github.wycomco.sipgate-softphone.download</string>
+	<string>com.github.wycomco.download.sipgate-softphone</string>
 	<key>Process</key>
 	<array>
 		<dict>
@@ -47,19 +45,6 @@
 			</dict>
 			<key>Processor</key>
 			<string>Versioner</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>destination_path</key>
-				<string>%RECIPE_CACHE_DIR%/%APPLICATIONS_PATH%/%dmg_found_filename%</string>
-				<key>overwrite</key>
-				<true/>
-				<key>source_path</key>
-				<string>%RECIPE_CACHE_DIR%/downloads/%NAME%.dmg/%dmg_found_filename%</string>
-			</dict>
-			<key>Processor</key>
-			<string>Copier</string>
 		</dict>
 	</array>
 </dict>

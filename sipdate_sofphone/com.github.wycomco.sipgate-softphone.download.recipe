@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Download recipe for the latest version of sipgate softphone.</string>
 	<key>Identifier</key>
-	<string>com.github.wycomco.sipgate-softphone.download</string>
+	<string>com.github.wycomco.download.sipgate-softphone</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
