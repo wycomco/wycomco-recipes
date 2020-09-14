@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Munki import the latest sipgate softphone after the check for dmg and app integrity, and after download.</string>
 	<key>Identifier</key>
-	<string>com.github.wycomco.sipgate-softphone.munki</string>
+	<string>com.github.wycomco.munki.sipgate-softphone</string>
 	<key>Input</key>
 	<dict>
 		<key>APPLICATIONS_PATH</key>
@@ -21,7 +21,7 @@
 				<string>testing</string>
 			</array>
 			<key>category</key>
-			<string>Productivity</string>
+			<string>Utilities</string>
 			<key>description</key>
 			<string>Place calls not only from your phone or mobile also now from any computer – with the sipgate Softphone.</string>
 			<key>developer</key>
